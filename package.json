@@ -1,0 +1,19 @@
+{
+  "name": "natours_app",
+  "version": "1.0.0",
+  "description": "Learing node.js, express and mongoDB",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.17.2",
+    "mongoose": "^6.3.8"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
