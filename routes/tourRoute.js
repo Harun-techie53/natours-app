@@ -4,8 +4,10 @@ const {
     getTours, 
     getTour, 
     createTour, 
-    updateTour
+    updateTour,
+    deleteTour
 } = require('../controllers/tourController');
+const { tourAliasing } = require('../middlewares/tourMiddleware');
 
 router
     .route('/')
@@ -13,8 +15,13 @@ router
     .post(createTour);
 
 router
+    .route('/top-5-cheap')
+    .get(tourAliasing, getTours);
+
+router
     .route('/:id')
     .get(getTour)
-    .patch(updateTour);
+    .patch(updateTour)
+    .delete(deleteTour);
 
 module.exports = router;

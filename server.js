@@ -1,10 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const tourRouter = require('./routes/tourRoute');
 
 const app = express();
 
-app.use('/api/v1/tours', require('./routes/tourRoute'));
+app.use(express.json());
+
+app.use('/api/v1/tours', tourRouter);
 
 const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
 
