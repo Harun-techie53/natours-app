@@ -38,6 +38,17 @@ class APIFeatures {
 
         return this;
     }
+
+    fields() {
+        if(this.queryString.fields) {
+            const selectedFields = this.queryString.fields.split(',').join(' ');
+            this.query.select(selectedFields);
+        } else {
+            this.query.select('-__v');
+        }
+
+        return this;
+    }
 }
 
 module.exports = APIFeatures;

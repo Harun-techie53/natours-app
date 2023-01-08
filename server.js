@@ -1,23 +1,23 @@
-const express = require('express');
-const mongoose = require('mongoose');
 require('dotenv').config();
-const tourRouter = require('./routes/tourRoute');
+const connectDB = require('./config/db');
 
-const app = express();
-
-app.use(express.json());
-
-app.use('/api/v1/tours', tourRouter);
-
-const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
-
-mongoose.connect(DB, {
-    useNewUrlParser: true
-}).then((con) => {
-    console.log('Database connected!');
+//Caught the error due to uncaught promise rejection
+process.on('uncaughtException', (err) => {
+    console.log(err.name, err.message);
+    process.exit(1);
 });
 
-const {PORT} = process.env;
+//Initialize express app
+const app = require('./app');
+
+connectDB();
+
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`App is running on port ${PORT}...`);
+});
+
+process.on('unhandledRejection', (err) => {
+    console.log(err.name, err.message);
+    process.exit(1);
 });
