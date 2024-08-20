@@ -57,8 +57,3 @@ Start the server
   npm run start
 ```
 
-
-## Deployed Link
-
-[Natours App On Live](https://natours-app-tyg4.onrender.com)
-
