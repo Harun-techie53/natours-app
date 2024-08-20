@@ -36,12 +36,10 @@ exports.protectRoute = catchAsync(async (req, res, next) => {
     next();
 });
 
-exports.restrictTo = (...roles) => (req, res, next) => {
-    // roles = ['admin', 'lead-guide']
-
+exports.restrictTo = (...roles) => catchAsync(async(req, res, next) => {
     if(!roles.includes(req.user.role)) {
         return next(new AppError('Permission denied!', 403));
     }
 
     next();
-}
+})

@@ -17,7 +17,7 @@ exports.getTours = catchAsync(async (req, res, next) => {
 });
 
 exports.getTour = catchAsync(async (req, res, next) => {
-    const tour = await new APIFeatures(Tour.findById(req.params.id).populate('reviews'), req.query).fields();
+    const tour = new APIFeatures(Tour.findById(req.params.id).populate('reviews'), req.query).fields();
 
     if(!tour) {
         const err = new AppError("Tour not found!", 404);
